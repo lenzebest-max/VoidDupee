@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.voiddupe'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'papermc'
+        url = uri('https://repo.papermc.io/repository/maven-public/')
+    }
+}
+
+dependencies {
+    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+processResources {
+    filesMatching('plugin.yml') {
+        expand(version: project.version)
+    }
+}
+
+jar {
+    archiveBaseName = 'VoidDupe'
+}
+
+tasks.build {
+    dependsOn tasks.jar
+}
+
+
+tasks.named('jar') {
+    doLast {
+        def jarFile = archiveFile.get().asFile
+        def zip = new java.util.zip.ZipFile(jarFile)
+        try {
+            if (zip.getEntry('plugin.yml') == null) {
+                throw new GradleException("VoidDupe build error: plugin.yml is missing from the JAR.")
+            }
+            if (zip.getEntry('com/voiddupe/VoidDupe.class') == null) {
+                throw new GradleException("VoidDupe build error: VoidDupe.class is missing from the JAR.")
+            }
+        } finally {
+            zip.close()
+        }
+    }
+}

@@ -1,0 +1,79 @@
+name: VoidDupe
+version: ${version}
+main: com.voiddupe.VoidDupe
+api-version: '1.21'
+author: VoidDupe
+description: VoidDupe server economy, crates, ranks, auction house, shop and cosmetics plugin.
+
+commands:
+  help:
+    description: Shows the commands available to your rank.
+    usage: /help
+  dupe:
+    description: Duplicates the item in your main hand.
+    usage: /dupe
+  fly:
+    description: Toggles flight.
+    usage: /fly
+  god:
+    description: Toggles invulnerability.
+    usage: /god
+  heal:
+    description: Heals a player.
+    usage: /heal
+  vanish:
+    description: Toggles invisibility.
+    usage: /vanish
+  speed:
+    description: Sets walking/flying speed.
+    usage: /speed <1-10>
+  sudo:
+    description: Makes a player run a command.
+    usage: /sudo <player> <cmd>
+  freeze:
+    description: Freezes a player.
+    usage: /freeze <player>
+  launch:
+    description: Launches a player upward.
+    usage: /launch <player>
+  smite:
+    description: Strikes a player with lightning.
+    usage: /smite <player>
+  rank:
+    description: Changes a player's rank.
+    usage: /rank <player> <rank>
+  money:
+    description: Checks or changes money.
+    usage: /money [give|take|set] <player> <amount>
+  hearts:
+    description: Changes a player's hearts.
+    usage: /hearts [add|remove|set] <player> <amount>
+  sellaxe:
+    description: Buys the Sell Axe for $10,000,000.
+    usage: /sellaxe
+  kit:
+    description: Claims a rank kit.
+    usage: /kit <echo|warden|void>
+  ah:
+    description: Opens the auction house.
+    usage: /ah [sell <price>]
+  shop:
+    description: Opens the shop.
+    usage: /shop
+  crate:
+    description: Opens a virtual crate.
+    usage: /crate <echo|warden|void|voidplus|heart> <amount>
+  cosmetics:
+    description: Opens cosmetics.
+    usage: /cosmetics
+  setcrate:
+    description: Tags the chest you are looking at as a physical crate.
+    usage: /setcrate <echo|warden|void|voidplus|heart>
+
+permissions:
+  voiddupe.staff:
+    description: Staff access.
+    default: op
+  voiddupe.owner:
+    description: Owner access.
+    default: op
